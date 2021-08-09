@@ -1,7 +1,14 @@
 import { createApp } from 'vue'
 
+import { registerApp } from './globel/index'
 import App from './App.vue'
 
-createApp(App).mount('#app')
+import router from './router/index'
 
-console.log('111')
+import { store } from './store'
+
+const app = createApp(App)
+
+registerApp(app)
+
+app.use(router).use(store).mount('#app')
