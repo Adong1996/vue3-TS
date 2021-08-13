@@ -1,6 +1,9 @@
 import { createApp } from 'vue'
 
+import './assets/css/bass.less'
+
 import { registerApp } from './globel/index'
+
 import App from './App.vue'
 
 import router from './router/index'
@@ -15,17 +18,3 @@ app.use(router).use(store).mount('#app')
 
 // Axios
 import hyRequest from './service/index'
-
-console.log(
-  hyRequest.request({
-    method: 'GET',
-    interceptors: {
-      reqInterceptors: (config) => {
-        return config
-      },
-      resInterceptors: (res) => {
-        return res
-      }
-    }
-  })
-)

@@ -1,7 +1,5 @@
 <template>
   <div class="root">
-    <router-link to="/login">login</router-link>
-    <router-link to="/main">Main</router-link>
     <router-view></router-view>
   </div>
 </template>
