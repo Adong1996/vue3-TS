@@ -1,12 +1,22 @@
 import { createStore } from 'vuex'
 
-import state from './state'
-import getters from './getter'
-import mutations from './mutation'
-import actions from './action'
-export const store = createStore({
-  state,
-  getters,
-  mutations,
-  actions
+import { IRootState } from './type'
+
+import login from './login/login'
+
+//创建 store 实例泛型 state 的类型
+export const store = createStore<IRootState>({
+  state() {
+    return {}
+  },
+  getters: {},
+  mutations: {},
+  actions: {},
+  modules: {
+    login
+  }
 })
+
+export function setupStore() {
+  store.dispatch('login/localLoginInfo')
+}

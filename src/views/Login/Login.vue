@@ -15,8 +15,8 @@
           <el-form-item :rules="rules.name" label="账号" prop="name">
             <el-input v-model="accountUser.name"></el-input>
           </el-form-item>
-          <el-form-item label="密码" prop="pass" :rules="rules.pass">
-            <el-input v-model="accountUser.pass"></el-input>
+          <el-form-item label="密码" prop="password" :rules="rules.password">
+            <el-input v-model="accountUser.password"></el-input>
           </el-form-item>
         </el-form>
       </el-tab-pane>
@@ -44,7 +44,7 @@
     </el-tabs>
     <footer>
       <div class="center">
-        <el-checkbox>记住密码</el-checkbox>
+        <el-checkbox v-model="isCheck" @change="onCheck">记住密码</el-checkbox>
         <el-link type="primary">忘记密码</el-link>
       </div>
       <el-button type="primary" @click="logIn">立即登录</el-button>
@@ -53,54 +53,52 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, reactive, onMounted } from 'vue'
+import { defineComponent, ref, reactive } from 'vue'
 
 import type { ElForm } from 'element-plus'
 
 import { rules } from './account-config'
+
+import { useStore } from 'vuex'
+import { loginAll } from './login'
+import { localStorageGet } from '@/utils/localStorage'
 export default defineComponent({
   setup() {
     //账号验证
     const accountUser = reactive({
-      name: '',
-      pass: ''
+      name: localStorageGet('user').name || '',
+      password: localStorageGet('user').password || ''
     })
     //手机验证
     const accountPhone = reactive({
-      phone: '',
-      code: ''
+      phone: localStorageGet('phone').phone || '',
+      code: localStorageGet('phone').code || ''
     })
     //却换登录方式
-    const labels = ref<string>('')
+    const labels = ref('user')
     const isCut = (tab: any) => {
       console.log(tab.props.label)
       labels.value = tab.props.label
-      // label.value = tab.props
-      // if (tab.uid === 17) {
-      //   console.log(tab.uid, event, c)
-      //   isShow.value = false
-      // } else {
-      //   console.log(tab.uid, event, c)
-      //   isShow.value = true
-      // }
     }
     // 登录
     const userFrom = ref<InstanceType<typeof ElForm>>()
     const phoneFrom = ref<InstanceType<typeof ElForm>>()
+    const store = useStore()
     const logIn = () => {
-      if (!labels.value || labels.value === 'user') {
-        userFrom.value?.validate((valid) => {
-          if (valid) {
-            console.log(labels.value)
-          } else {
-            console.log('验证错误')
-          }
-        })
-      } else {
-        phoneFrom.value?.validate((valid) => {
-          console.log(labels.value)
-          console.log(valid)
-        })
+      let result = loginAll(labels.value, userFrom.value)
+      if (result) {
+        store.dispatch('login/loginGo', { ...accountUser })
+      }
+    }
+    //记住密码-本地缓存
+    const isCheck = ref(false)
+    const onCheck = () => {
+      if (isCheck.value) {
+        if (labels.value === 'user') {
+          loginAll(labels.value, userFrom.value, accountUser, isCheck.value)
+        } else {
+          loginAll(labels.value, userFrom.value, accountPhone, isCheck.value)
+        }
       }
     }
     return {
@@ -111,7 +109,9 @@ export default defineComponent({
       isCut,
       logIn,
       userFrom,
-      phoneFrom
+      phoneFrom,
+      isCheck,
+      onCheck
     }
   }
 })

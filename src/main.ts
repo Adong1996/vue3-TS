@@ -10,11 +10,12 @@ import router from './router/index'
 
 import { store } from './store'
 
+import { setupStore } from '@/store/index'
+
 const app = createApp(App)
 
 registerApp(app)
 
 app.use(router).use(store).mount('#app')
 
-// Axios
-import hyRequest from './service/index'
+setupStore()
