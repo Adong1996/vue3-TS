@@ -1,3 +1,11 @@
+import { ILoginState } from './login/login'
+
 export interface IRootState {
-  name: string
+  count: string
 }
+
+export interface IRootWithModule {
+  login: ILoginState
+}
+
+export type IStoreType = IRootState & IRootWithModule

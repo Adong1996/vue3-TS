@@ -66,18 +66,17 @@ export default defineComponent({
   setup() {
     //账号验证
     const accountUser = reactive({
-      name: localStorageGet('user').name || '',
-      password: localStorageGet('user').password || ''
+      name: localStorageGet('user')?.name || '',
+      password: localStorageGet('user')?.password || ''
     })
     //手机验证
     const accountPhone = reactive({
-      phone: localStorageGet('phone').phone || '',
-      code: localStorageGet('phone').code || ''
+      phone: localStorageGet('phone')?.phone || '',
+      code: localStorageGet('phone')?.code || ''
     })
     //却换登录方式
     const labels = ref('user')
     const isCut = (tab: any) => {
-      console.log(tab.props.label)
       labels.value = tab.props.label
     }
     // 登录

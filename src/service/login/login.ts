@@ -29,7 +29,7 @@ export function reqUserInfo(id: number) {
 }
 export function reqUseMenuIds(id: number) {
   return backRequest.get<IDataType>({
-    url: LoginApi.usersMenuIds + id + '/menuIds',
+    url: LoginApi.usersMenuIds + id + '/menu',
     headers: {
       needToken: true
     }

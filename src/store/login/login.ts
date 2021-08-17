@@ -10,7 +10,7 @@ import { localStorageSet, localStorageGet } from '@/utils/localStorage'
 
 import router from '@/router/index'
 
-interface ILoginState {
+export interface ILoginState {
   token: string
   userInfo: any
   menuList: any
@@ -29,7 +29,6 @@ const loginModule: Module<ILoginState, IRootState> = {
   mutations: {
     saveToken(state, token: string) {
       state.token = token
-      console.log('result', token)
     },
     saveInfo(state, info: any) {
       state.userInfo = info
