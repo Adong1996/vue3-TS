@@ -10,6 +10,7 @@ import { localStorageSet, localStorageGet } from '@/utils/localStorage'
 
 import router from '@/router/index'
 
+import { mapMenu2Routes } from '@/utils/map-menu'
 export interface ILoginState {
   token: string
   userInfo: any
@@ -27,6 +28,7 @@ const loginModule: Module<ILoginState, IRootState> = {
     }
   },
   mutations: {
+    // 保存对应的数据到store
     saveToken(state, token: string) {
       state.token = token
     },
@@ -35,6 +37,12 @@ const loginModule: Module<ILoginState, IRootState> = {
     },
     saveMenuIds(state, list: any) {
       state.menuList = list
+      // menuList ->(映射) routes
+      const routes = mapMenu2Routes(state.menuList)
+      // 将routes 添加到 路由 main.children
+      routes.forEach((route) => {
+        router.addRoute('main', route)
+      })
     }
   },
   getters: {},

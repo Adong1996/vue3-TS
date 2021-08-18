@@ -18,7 +18,7 @@ export const store = createStore<IRootState>({
     login
   }
 })
-
+// 页面刷新本地获取数据保存 store
 export function setupStore() {
   store.dispatch('login/localLoginInfo')
 }

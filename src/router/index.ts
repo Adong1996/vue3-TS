@@ -8,6 +8,7 @@ const router = createRouter({
   routes
 })
 
+// 导航守卫
 router.beforeEach((to) => {
   if (to.path !== '/login') {
     const token = localStorageGet('key_token')

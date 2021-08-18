@@ -5,7 +5,7 @@
       <span class="title" v-if="!foldValue">Vue3 + TS</span>
     </div>
     <el-menu
-      default-active="39"
+      default-active="2"
       class="el-menu-vertical"
       @open="handleOpen"
       @close="handleClose"
@@ -24,7 +24,7 @@
             </template>
             <template v-for="item in menuItem.children" :key="item.id">
               <!-- 二级菜单的子菜单 -->
-              <el-menu-item :index="`${item.id}`">
+              <el-menu-item :index="`${item.id}`" @click="onMenuItem(item)">
                 <i v-if="item.icon" :class="item.icon"></i>
                 <template #title>{{ item.name }}</template>
               </el-menu-item>
@@ -43,8 +43,9 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
+import { defineComponent, computed, onMounted, ref } from 'vue'
 import { useStore } from '@/store/index'
+import { useRouter, useRoute } from 'vue-router'
 // vuex -> typescript  -> pinia
 export default defineComponent({
   props: {
@@ -62,10 +63,33 @@ export default defineComponent({
     const handleClose = (key: any, keyPath: any) => {
       console.log(key, keyPath)
     }
+    const router = useRouter()
+    const route = useRoute()
+    onMounted(() => {
+      console.log(route.path)
+      console.log(menuList.value[0])
+      console.log(showIndex.value)
+    })
+    const showIndex = ref()
+    const onMenuItem = (menu: any) => {
+      router.push({
+        path: menu.url ?? 'no-find'
+      })
+      showIndex.value = menu.id
+      console.log(menu.url, menu.id)
+    }
+    // 菜单默认显示
+    // const showIndex = ref()
+    // const showIndex = computed(() => {
+    //   const prePath = route.path
+    //   menuList
+    // })
     return {
       menuList,
       handleOpen,
-      handleClose
+      handleClose,
+      onMenuItem,
+      showIndex
     }
   }
 })

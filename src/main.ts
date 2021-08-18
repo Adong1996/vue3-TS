@@ -15,7 +15,7 @@ import { setupStore } from '@/store/index'
 const app = createApp(App)
 
 registerApp(app)
+//里面有动态注册路由，代码执行顺序要放在 app.use(router)前面
+setupStore()
 
 app.use(router).use(store).mount('#app')
-
-setupStore()
