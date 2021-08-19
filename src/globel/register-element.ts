@@ -23,7 +23,9 @@ import {
   ElMenuItem,
   ElMenuItemGroup,
   ElRadioGroup,
-  ElRadioButton
+  ElRadioButton,
+  ElBreadcrumb,
+  ElBreadcrumbItem
 } from 'element-plus'
 
 const components = [
@@ -47,7 +49,9 @@ const components = [
   ElMenuItem,
   ElMenuItemGroup,
   ElRadioGroup,
-  ElRadioButton
+  ElRadioButton,
+  ElBreadcrumb,
+  ElBreadcrumbItem
 ]
 
 export default function (app: App) {

@@ -7,6 +7,23 @@
         @click="isFold"
       ></i>
     </el-radio-group>
+    <div class="nav-content">
+      <el-breadcrumb separator="/">
+        <el-breadcrumb-item>{{ menusInfo.menusName }}</el-breadcrumb-item>
+        <el-breadcrumb-item>{{ menusInfo.itemName }}</el-breadcrumb-item>
+      </el-breadcrumb>
+      <div class="rigth">
+        <div class="item-left">
+          <i class="el-icon-chat-dot-square"></i>
+          <i class="el-icon-collection-tag"></i>
+          <a><i class="el-icon-bell"></i></a>
+        </div>
+        <div class="item-rigth">
+          <i class="el-icon-s-custom"></i>
+          <span>coderwhy</span>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -14,6 +31,12 @@
 import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
+  props: {
+    menusInfo: {
+      type: Object,
+      required: true
+    }
+  },
   emits: ['foldChang'],
   setup(props, { emit }) {
     const fold = ref(false)
@@ -31,6 +54,7 @@ export default defineComponent({
 <style lang="less" scoped>
 .nav-header {
   display: flex;
+  align-items: center;
   width: 100%;
 
   .fold-menu {
@@ -44,6 +68,31 @@ export default defineComponent({
     align-items: center;
     flex: 1;
     padding: 0 20px;
+  }
+  .nav-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 10px;
+    width: 100%;
+    .rigth {
+      display: flex;
+      .item-left {
+        padding-right: 10px;
+        i {
+          font-size: 20px;
+          padding: 0 5px;
+        }
+      }
+      .item-rigth {
+        text-align: center;
+        // font-size: 20px;
+        i {
+          font-size: 20px;
+          padding: 0 5px;
+        }
+      }
+    }
   }
 }
 </style>

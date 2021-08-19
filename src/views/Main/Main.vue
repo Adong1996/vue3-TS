@@ -2,11 +2,11 @@
   <div class="main">
     <el-container class="main-content">
       <el-aside :width="foldValue ? '70px' : '210px'">
-        <NavMenu :foldValue="foldValue"></NavMenu>
+        <NavMenu :foldValue="foldValue" @titleInfo="titleInfo"></NavMenu>
       </el-aside>
       <el-container class="page">
         <el-header class="page-header">
-          <NavHeader @foldChang="foldChang"></NavHeader>
+          <NavHeader @foldChang="foldChang" :menusInfo="menusInfo"></NavHeader>
         </el-header>
         <el-main class="page-content">
           <router-view></router-view>
@@ -16,10 +16,11 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, reactive, watchEffect } from 'vue'
 
 import NavMenu from '@/components/nav-menu/NavMenu.vue'
 import NavHeader from '@/components/nav-header/NavHeader.vue'
+import { localStorageSet, localStorageGet } from '@/utils/localStorage'
 export default defineComponent({
   components: {
     NavMenu,
@@ -30,9 +31,33 @@ export default defineComponent({
     const foldChang = (fold: boolean) => {
       foldValue.value = fold
     }
+    // 标题传递
+    let menusInfo = reactive({
+      menusName: '',
+      itemName: ''
+    })
+    const titleInfo = (info: any) => {
+      const { menusName, itemName } = info
+      menusInfo.menusName = menusName
+      menusInfo.itemName = itemName
+    }
+    // 页面刷新之前本地缓存 titleInfo
+    window.onbeforeunload = () => {
+      localStorageSet('titleInfo', menusInfo)
+    }
+    watchEffect(() => {
+      const result = localStorageGet('titleInfo')
+      if (result) {
+        const { menusName, itemName } = result
+        menusInfo.menusName = menusName
+        menusInfo.itemName = itemName
+      }
+    })
     return {
       foldValue,
-      foldChang
+      foldChang,
+      titleInfo,
+      menusInfo
     }
   }
 })
