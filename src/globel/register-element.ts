@@ -25,7 +25,12 @@ import {
   ElRadioGroup,
   ElRadioButton,
   ElBreadcrumb,
-  ElBreadcrumbItem
+  ElBreadcrumbItem,
+  ElRow,
+  ElCol,
+  ElSelect,
+  ElOption,
+  ElDatePicker
 } from 'element-plus'
 
 const components = [
@@ -51,7 +56,12 @@ const components = [
   ElRadioGroup,
   ElRadioButton,
   ElBreadcrumb,
-  ElBreadcrumbItem
+  ElBreadcrumbItem,
+  ElRow,
+  ElCol,
+  ElSelect,
+  ElOption,
+  ElDatePicker
 ]
 
 export default function (app: App) {
