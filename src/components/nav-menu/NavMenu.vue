@@ -5,7 +5,7 @@
       <span class="title" v-if="!foldValue">Vue3 + TS</span>
     </div>
     <el-menu
-      :default-active="`${showIndex}`"
+      :default-active="defaultValue"
       class="el-menu-vertical"
       :collapse="foldValue"
       text-color="#b7bdc3"
@@ -44,8 +44,9 @@
 import { defineComponent, computed, ref } from 'vue'
 import { useStore } from '@/store/index'
 import { useRouter, useRoute } from 'vue-router'
+import { pathMapToMenu } from '@/utils/map-menu'
 
-import { indexFind } from './NavMenu'
+// import { indexFind } from './NavMenu'
 // vuex -> typescript  -> pinia
 export default defineComponent({
   props: {
@@ -55,45 +56,33 @@ export default defineComponent({
     }
   },
   emits: ['titleInfo'],
-  setup(props, { emit }) {
+  setup() {
     const store = useStore()
     const menuList = computed(() => {
       return store.state.login.menuList
     })
     const router = useRouter()
     const route = useRoute()
+    const currentPath = route.path
+    const menu = pathMapToMenu(menuList.value, currentPath)
+    const defaultValue = ref(menu.id + '')
     // 标题传递
-    let allName = {}
+    // let allName = {}
     const onMenuItem = (menu: any) => {
       router.push({
         path: menu.url ?? 'no-find'
       })
-      const menuUrl = menu.url
-      const urlArr = menuUrl?.split('/')
-      const newUrl = `/${urlArr[1]}/${urlArr[2]}`
-      const menuName = menuList.value.find((item: any) => {
-        if (item.url === newUrl) {
-          return item
-        }
-      })
-      allName = {
-        menusName: menuName.name,
-        itemName: menu.name
-      }
-      emit('titleInfo', allName)
     }
-    // 菜单默认显示
-    const showIndex = ref()
     //计算属性
-    window.addEventListener('load', () => {
-      const prePath = route.path
-      const indexNum = indexFind(menuList.value, prePath)
-      showIndex.value = indexNum
-    })
+    // window.addEventListener('load', () => {
+    //   const prePath = route.path
+    //   const indexNum = indexFind(menuList.value, prePath)
+    //   showIndex.value = indexNum
+    // })
     return {
       menuList,
       onMenuItem,
-      showIndex
+      defaultValue
     }
   }
 })

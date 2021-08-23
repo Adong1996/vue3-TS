@@ -59,7 +59,7 @@ import type { ElForm } from 'element-plus'
 
 import { rules } from './account-config'
 
-import { useStore } from 'vuex'
+import { useStore } from '@/store/index'
 import { loginAll } from './login'
 import { localStorageGet } from '@/utils/localStorage'
 export default defineComponent({

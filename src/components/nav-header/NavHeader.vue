@@ -8,10 +8,7 @@
       ></i>
     </el-radio-group>
     <div class="nav-content">
-      <el-breadcrumb separator="/">
-        <el-breadcrumb-item>{{ menusInfo.menusName }}</el-breadcrumb-item>
-        <el-breadcrumb-item>{{ menusInfo.itemName }}</el-breadcrumb-item>
-      </el-breadcrumb>
+      <ToBreadCrumb :breadcrumbs="breadcrumbs" />
       <div class="rigth">
         <div class="item-left">
           <i class="el-icon-chat-dot-square"></i>
@@ -28,14 +25,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
-
+import { defineComponent, ref, computed } from 'vue'
+import { useStore } from 'vuex'
+import { useRoute } from 'vue-router'
+import ToBreadCrumb from '@/base-ui/ToBreadCrumb/index'
+import { pathMapBreadcrumbs } from '@/utils/map-menu'
 export default defineComponent({
-  props: {
-    menusInfo: {
-      type: Object,
-      required: true
-    }
+  components: {
+    ToBreadCrumb
   },
   emits: ['foldChang'],
   setup(props, { emit }) {
@@ -44,9 +41,18 @@ export default defineComponent({
       fold.value = !fold.value
       emit('foldChang', fold.value)
     }
+    // 面包屑的数据
+    const store = useStore()
+    const userMenus = store.state.login.menuList
+    const breadcrumbs = computed(() => {
+      const route = useRoute()
+      const currentPath = route.path
+      return pathMapBreadcrumbs(userMenus, currentPath)
+    })
     return {
       fold,
-      isFold
+      isFold,
+      breadcrumbs
     }
   }
 })

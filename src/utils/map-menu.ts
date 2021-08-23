@@ -1,5 +1,6 @@
 import { RouteRecordRaw } from 'vue-router'
 
+let firstMenu: any = null
 export function mapMenu2Routes(menuList: any[]) {
   const routes: RouteRecordRaw[] = []
   // 1. 先去加载映射好的所有的routes
@@ -18,6 +19,9 @@ export function mapMenu2Routes(menuList: any[]) {
       if (menu.type === 2) {
         const route = allRoutes.find((route) => route.path === menu.url)
         if (route) routes.push(route)
+        if (!firstMenu) {
+          firstMenu = menu
+        }
       } else {
         _recurseGetRoutes(menu.children)
       }
@@ -26,3 +30,31 @@ export function mapMenu2Routes(menuList: any[]) {
   _recurseGetRoutes(menuList)
   return routes
 }
+import { IBreadcrumb } from '@/base-ui/ToBreadCrumb/index'
+// 以路径找菜单
+export function pathMapBreadcrumbs(userMenus: any[], currentPath: string) {
+  const breadcrumbs: IBreadcrumb[] = []
+  pathMapToMenu(userMenus, currentPath, breadcrumbs)
+  return breadcrumbs
+}
+// 以路径找菜单id
+export function pathMapToMenu(
+  userMenus: any[],
+  currentPath: string,
+  breadcrumb?: IBreadcrumb[]
+): any {
+  for (const menu of userMenus) {
+    if (menu.type === 1) {
+      const findmenu = pathMapToMenu(menu.children ?? [], currentPath)
+      if (findmenu) {
+        breadcrumb?.push({ name: menu.name })
+        breadcrumb?.push({ name: findmenu.name })
+        return findmenu
+      }
+    } else if (menu.type === 2 && menu.url === currentPath) {
+      return menu
+    }
+  }
+}
+
+export { firstMenu }

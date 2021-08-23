@@ -43,7 +43,7 @@ class AllRequest {
     )
   }
   // 实例的公共的请求方式
-  requset<T>(config: AllRequestInterceptors<T>): Promise<T> {
+  requset<T = any>(config: AllRequestInterceptors<T>): Promise<T> {
     return new Promise((resolve) => {
       // 单个请求的拦截 看请求方式中里是否有对应的实例的拦截器
       if (config.interceptors?.reqInterceptors) {
@@ -57,16 +57,16 @@ class AllRequest {
       })
     })
   }
-  get<T>(config: AllRequestInterceptors<T>): Promise<T> {
+  get<T = any>(config: AllRequestInterceptors<T>): Promise<T> {
     return this.requset<T>({ ...config, method: 'GET' })
   }
-  post<T>(config: AllRequestInterceptors<T>): Promise<T> {
+  post<T = any>(config: AllRequestInterceptors<T>): Promise<T> {
     return this.requset<T>({ ...config, method: 'POST' })
   }
-  delete<T>(config: AllRequestInterceptors<T>): Promise<T> {
+  delete<T = any>(config: AllRequestInterceptors<T>): Promise<T> {
     return this.requset<T>({ ...config, method: 'DELETE' })
   }
-  putch<T>(config: AllRequestInterceptors<T>): Promise<T> {
+  putch<T = any>(config: AllRequestInterceptors<T>): Promise<T> {
     return this.requset<T>({ ...config, method: 'PATCH' })
   }
 }

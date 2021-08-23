@@ -1,5 +1,5 @@
 import { backRequest } from '../index'
-
+import { IDataType } from '../type'
 enum LoginApi {
   AccountLogin = '/login',
   usersInfo = '/users/',
@@ -9,10 +9,7 @@ export interface IAccount {
   name: string
   password: string
 }
-export interface IDataType {
-  code: number
-  data: any
-}
+
 export function reqLogin(account: IAccount) {
   return backRequest.post<IDataType>({
     url: LoginApi.AccountLogin,

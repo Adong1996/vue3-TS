@@ -1,5 +1,8 @@
 <template>
   <div class="to-from">
+    <div class="header">
+      <slot name="header"></slot>
+    </div>
     <el-form :label-width="labelWidth">
       <el-row>
         <template v-for="item in fromItems" :key="item.type">
@@ -11,13 +14,14 @@
                 <el-input
                   :placeholder="item.placeholder"
                   :show-password="item.type === 'possword'"
+                  v-model="fromData[`${item.field}`]"
                 />
               </template>
               <template v-else-if="item.type === 'select'">
                 <el-select
                   :placeholder="item.placeholder"
                   style="width: 100%"
-                  v-model="item.placeholder"
+                  v-model="fromData[`${item.field}`]"
                 >
                   <el-option
                     v-for="option in item.options"
@@ -32,6 +36,7 @@
                 <el-date-picker
                   style="width: 100%"
                   v-bind="item.otherOptions"
+                  v-model="fromData[`${item.field}`]"
                 ></el-date-picker>
               </template>
             </el-form-item>
@@ -39,11 +44,14 @@
         </template>
       </el-row>
     </el-form>
+    <div class="footer">
+      <slot name="footer"></slot>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
+import { defineComponent, PropType, ref, watch } from 'vue'
 import { IFromItem } from './types'
 export default defineComponent({
   props: {
@@ -69,10 +77,21 @@ export default defineComponent({
         sm: 24,
         xs: 24
       })
+    },
+    modelValue: {
+      type: Object,
+      required: true
     }
   },
-  setup() {
-    return {}
+  emits: ['update:modelValue'],
+  setup(props, { emit }) {
+    const fromData = ref({ ...props.modelValue })
+    watch(fromData, (newValue) => emit('update:modelValue', newValue), {
+      deep: true
+    })
+    return {
+      fromData
+    }
   }
 })
 </script>

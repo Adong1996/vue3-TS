@@ -1,5 +1,6 @@
 type IFromType = 'input' | 'possword' | 'select' | 'datepicker'
 export interface IFromItem {
+  field: string
   type: IFromType
   label: string
   rules?: any[]
@@ -13,6 +14,6 @@ export interface IFromItem {
 export interface IFrom {
   fromItems: IFromItem[]
   labelWidth: string
-  colLayout: any
+  colLayout?: any
   itemLayout: any
 }

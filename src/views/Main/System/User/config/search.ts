@@ -5,24 +5,30 @@ export const searchFromConfig: IFrom = {
   itemLayout: {
     padding: '10px 40px'
   },
-  colLayout: {},
+  // colLayout: {
+  //   span: 8
+  // },
   fromItems: [
     {
+      field: 'id',
       type: 'input',
       label: 'id',
       placeholder: '请输入用id'
     },
     {
+      field: 'name',
       type: 'input',
       label: '用户名',
       placeholder: '请输入用户名'
     },
     {
+      field: 'password',
       type: 'possword',
       label: '密码',
       placeholder: '请输入密码'
     },
     {
+      field: 'sport',
       type: 'select',
       label: '喜欢运动',
       placeholder: '请选择喜欢运动',
@@ -32,6 +38,7 @@ export const searchFromConfig: IFrom = {
       ]
     },
     {
+      field: 'createTime',
       type: 'datepicker',
       label: '创建时间',
       otherOptions: {

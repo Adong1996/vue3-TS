@@ -30,12 +30,12 @@ import {
   ElCol,
   ElSelect,
   ElOption,
-  ElDatePicker
+  ElDatePicker,
+  ElTableColumn
 } from 'element-plus'
 
 const components = [
   ElButton,
-  ElTable,
   ElAlert,
   ElAside,
   ElContainer,
@@ -61,7 +61,9 @@ const components = [
   ElCol,
   ElSelect,
   ElOption,
-  ElDatePicker
+  ElDatePicker,
+  ElTable,
+  ElTableColumn
 ]
 
 export default function (app: App) {
