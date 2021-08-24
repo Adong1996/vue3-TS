@@ -1,4 +1,8 @@
 export interface IStstemState {
-  userList: any[]
-  userCount: number
+  // 用户
+  usersList: any[]
+  usersCount: number
+  // 角色
+  roleList: any[]
+  roleCount: number
 }

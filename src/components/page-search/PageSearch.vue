@@ -6,7 +6,9 @@
       </template>
       <template #footer>
         <div class="handle-btns">
-          <el-button icon="el-icon-refresh">重置</el-button>
+          <el-button icon="el-icon-refresh" @click="handleResetClick"
+            >重置</el-button
+          >
           <el-button type="primary" icon="el-icon-search">搜索</el-button>
         </div>
       </template>
@@ -28,16 +30,22 @@ export default defineComponent({
   components: {
     ToFrom
   },
-  setup() {
-    const fromData = ref({
-      id: '',
-      name: '',
-      password: '',
-      sport: '',
-      createTime: ''
-    })
+  setup(props, { emit }) {
+    // 双向绑定的shu'应该是由配置文件的field来决定的
+    // fromData 的属性动态决定
+    const fromItems = props.searchFromConfig?.fromItems ?? []
+    const fromOriginData: any = {}
+    for (const item of fromItems) {
+      fromOriginData[item.field] = ''
+    }
+    const fromData = ref(fromOriginData)
+    // 当用户点击重置
+    const handleResetClick = () => {
+      fromData.value = fromOriginData
+    }
     return {
-      fromData
+      fromData,
+      handleResetClick
     }
   }
 })
