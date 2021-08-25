@@ -31,6 +31,7 @@ export function mapMenu2Routes(menuList: any[]) {
   return routes
 }
 import { IBreadcrumb } from '@/base-ui/ToBreadCrumb/index'
+import menu from '@/router/main/system/menu/menu'
 // 以路径找菜单
 export function pathMapBreadcrumbs(userMenus: any[], currentPath: string) {
   const breadcrumbs: IBreadcrumb[] = []
@@ -55,6 +56,23 @@ export function pathMapToMenu(
       return menu
     }
   }
+}
+
+// 获取用户类表的按钮权限
+export function mapMenusToPermissions(userMenus: any[]) {
+  const permission: string[] = []
+
+  const _recurseGetPermission = (menus: any[]) => {
+    for (const menu of menus) {
+      if (menu.type === 1 || menu.type === 2) {
+        _recurseGetPermission(menu.children ?? [])
+      } else if (menu.type === 3) {
+        permission.push(menu.permission)
+      }
+    }
+  }
+  _recurseGetPermission(userMenus)
+  return permission
 }
 
 export { firstMenu }

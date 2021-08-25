@@ -11,7 +11,13 @@ const systemModule: Module<IStstemState, IRootState> = {
       usersCount: 0,
       // 角色
       roleList: [],
-      roleCount: 0
+      roleCount: 0,
+      // 商品
+      goodsList: [],
+      goodsCount: 0,
+      // 菜单
+      menuList: [],
+      menuCount: 0
     }
   },
   mutations: {
@@ -26,12 +32,35 @@ const systemModule: Module<IStstemState, IRootState> = {
     },
     changeRoleCount(state, count: number) {
       state.roleCount = count
+    },
+    changeGoodsList(state, list: any[]) {
+      state.goodsList = list
+    },
+    changeGoodsCount(state, count: number) {
+      state.goodsCount = count
+    },
+    changeMenuList(state, list: any[]) {
+      state.menuList = list
+    },
+    changeMenuCount(state, count: number) {
+      state.menuCount = count
     }
   },
   getters: {
     pageListDate: (state) => {
       return (pageName: string) => {
         return (state as any)[`${pageName}List`]
+        // switch (pageName) {
+        //   case 'users':
+        //     return state.usersList
+        //   case 'role':
+        //     return state.roleList
+        // }
+      }
+    },
+    pageCountDate: (state) => {
+      return (pageName: string) => {
+        return (state as any)[`${pageName}Count`]
         // switch (pageName) {
         //   case 'users':
         //     return state.usersList

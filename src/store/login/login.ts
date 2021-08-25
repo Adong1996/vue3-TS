@@ -10,11 +10,12 @@ import { localStorageSet, localStorageGet } from '@/utils/localStorage'
 
 import router from '@/router/index'
 
-import { mapMenu2Routes } from '@/utils/map-menu'
+import { mapMenu2Routes, mapMenusToPermissions } from '@/utils/map-menu'
 export interface ILoginState {
   token: string
   userInfo: any
   menuList: any
+  permission: string[]
 }
 //泛型类型需要两个参数：S：当前模块中state的类型，R：根store中state类型
 const loginModule: Module<ILoginState, IRootState> = {
@@ -24,7 +25,8 @@ const loginModule: Module<ILoginState, IRootState> = {
     return {
       token: '',
       userInfo: {},
-      menuList: []
+      menuList: [],
+      permission: []
     }
   },
   mutations: {
@@ -37,12 +39,18 @@ const loginModule: Module<ILoginState, IRootState> = {
     },
     saveMenuIds(state, list: any) {
       state.menuList = list
+
       // menuList ->(映射) routes
       const routes = mapMenu2Routes(state.menuList)
+
       // 将routes 添加到 路由 main.children
       routes.forEach((route) => {
         router.addRoute('main', route)
       })
+
+      //获取用户按钮的权限
+      const permission = mapMenusToPermissions(list)
+      state.permission = permission
     }
   },
   getters: {},
