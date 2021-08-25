@@ -31,7 +31,6 @@ export function mapMenu2Routes(menuList: any[]) {
   return routes
 }
 import { IBreadcrumb } from '@/base-ui/ToBreadCrumb/index'
-import menu from '@/router/main/system/menu/menu'
 // 以路径找菜单
 export function pathMapBreadcrumbs(userMenus: any[], currentPath: string) {
   const breadcrumbs: IBreadcrumb[] = []
