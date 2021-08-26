@@ -7,13 +7,17 @@
       <el-row>
         <template v-for="item in fromItems" :key="item.type">
           <el-col v-bind="colLayout">
-            <el-form-item :label="item.label" :style="itemLayout">
+            <el-form-item
+              :label="item.label"
+              :style="itemLayout"
+              v-if="!item.isHidden"
+            >
               <template
-                v-if="item.type === 'input' || item.type === 'possword'"
+                v-if="item.type === 'input' || item.type === 'password'"
               >
                 <el-input
                   :placeholder="item.placeholder"
-                  :show-password="item.type === 'possword'"
+                  :show-password="item.type === 'password'"
                   v-model="fromData[`${item.field}`]"
                 />
               </template>
@@ -27,8 +31,9 @@
                     v-for="option in item.options"
                     :key="option.value"
                     :value="option.value"
+                    :label="option.title"
                   >
-                    {{ option.title }}
+                    <!-- {{ option.title }} -->
                   </el-option>
                 </el-select>
               </template>
@@ -66,7 +71,7 @@ export default defineComponent({
     },
     itemLayout: {
       type: Object,
-      default: () => ({ padding: '10px 40px' })
+      default: () => ({ padding: '10px 20px' })
     },
     colLayout: {
       type: Object,
@@ -97,6 +102,6 @@ export default defineComponent({
 </script>
 <style lang="less" scoped>
 .to-from {
-  padding-top: 22px;
+  padding-top: 20px;
 }
 </style>

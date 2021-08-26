@@ -66,7 +66,7 @@ class AllRequest {
   delete<T = any>(config: AllRequestInterceptors<T>): Promise<T> {
     return this.requset<T>({ ...config, method: 'DELETE' })
   }
-  putch<T = any>(config: AllRequestInterceptors<T>): Promise<T> {
+  patch<T = any>(config: AllRequestInterceptors<T>): Promise<T> {
     return this.requset<T>({ ...config, method: 'PATCH' })
   }
 }
