@@ -1,7 +1,12 @@
 import { Module } from 'vuex'
 import { IRootState } from '@/store/type'
 import { IStstemState } from './type'
-import { getPageListData } from '@/service/main/system/system'
+import {
+  getPageListData,
+  deletePageDataById,
+  createPageData,
+  editPageData
+} from '@/service/main/system/system'
 const systemModule: Module<IStstemState, IRootState> = {
   namespaced: true,
   state() {
@@ -101,6 +106,47 @@ const systemModule: Module<IStstemState, IRootState> = {
       //     commit('changRoleCount', totalCount)
       //     break
       // }
+    },
+    async deletePageDataAction({ dispatch }, payload: any) {
+      //  获取pageName 和 id
+      const { pageName, id } = payload
+      const pageUrl = `/${pageName}/${id}`
+      // 调用删除网络请求
+      await deletePageDataById(pageUrl)
+      // 重新请求最新的数据
+      dispatch('getPageListAction', {
+        pageName,
+        queryInfo: {
+          offset: 0,
+          size: 10
+        }
+      })
+    },
+    async createPageDataAction({ dispatch }, payload: any) {
+      const { pageName, newData } = payload
+      const pageUrl = `/${pageName}`
+      await createPageData(pageUrl, newData)
+      // 重新请求最新的数据
+      dispatch('getPageListAction', {
+        pageName,
+        queryInfo: {
+          offset: 0,
+          size: 10
+        }
+      })
+    },
+    editPageDataAction({ dispatch }, payload: any) {
+      const { pageName, editData, id } = payload
+      const pageUrl = `/${pageName}/${id}`
+      editPageData(pageUrl, editData)
+      // 重新请求最新的数据
+      dispatch('getPageListAction', {
+        pageName,
+        queryInfo: {
+          offset: 0,
+          size: 10
+        }
+      })
     }
   }
 }

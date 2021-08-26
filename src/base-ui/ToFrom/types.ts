@@ -1,4 +1,4 @@
-type IFromType = 'input' | 'possword' | 'select' | 'datepicker'
+type IFromType = 'input' | 'password' | 'select' | 'datepicker'
 export interface IFromItem {
   field: string
   type: IFromType
@@ -9,11 +9,12 @@ export interface IFromItem {
   options?: any[]
   // 特殊的属性
   otherOptions?: any
+  isHidden?: boolean
 }
 
 export interface IFrom {
   fromItems: IFromItem[]
-  labelWidth: string
+  labelWidth?: string
   colLayout?: any
-  itemLayout: any
+  itemLayout?: any
 }

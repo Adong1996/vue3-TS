@@ -1,4 +1,4 @@
-export interface IDataType {
+export interface IDataType<T = any> {
   code: number
-  data: any
+  data: T
 }

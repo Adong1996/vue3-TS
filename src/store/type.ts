@@ -2,7 +2,8 @@ import { ILoginState } from './login/login'
 
 import { IStstemState } from './/main/system/type'
 export interface IRootState {
-  count: string
+  entireDepartment: any[]
+  entireRole: any[]
 }
 
 export interface IRootWithModule {
