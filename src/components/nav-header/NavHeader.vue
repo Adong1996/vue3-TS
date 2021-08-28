@@ -9,17 +9,7 @@
     </el-radio-group>
     <div class="nav-content">
       <ToBreadCrumb :breadcrumbs="breadcrumbs" />
-      <div class="rigth">
-        <div class="item-left">
-          <i class="el-icon-chat-dot-square"></i>
-          <i class="el-icon-collection-tag"></i>
-          <a><i class="el-icon-bell"></i></a>
-        </div>
-        <div class="item-rigth">
-          <i class="el-icon-s-custom"></i>
-          <span>coderwhy</span>
-        </div>
-      </div>
+      <nav-info />
     </div>
   </div>
 </template>
@@ -29,10 +19,12 @@ import { defineComponent, ref, computed } from 'vue'
 import { useStore } from 'vuex'
 import { useRoute } from 'vue-router'
 import ToBreadCrumb from '@/base-ui/ToBreadCrumb/index'
+import NavInfo from '@/components/nav-header/NavInfo.vue'
 import { pathMapBreadcrumbs } from '@/utils/map-menu'
 export default defineComponent({
   components: {
-    ToBreadCrumb
+    ToBreadCrumb,
+    NavInfo
   },
   emits: ['foldChang'],
   setup(props, { emit }) {

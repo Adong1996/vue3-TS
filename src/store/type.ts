@@ -4,6 +4,7 @@ import { IStstemState } from './/main/system/type'
 export interface IRootState {
   entireDepartment: any[]
   entireRole: any[]
+  entirMenu: any[]
 }
 
 export interface IRootWithModule {

@@ -8,5 +8,5 @@ export function fromatUtcString(
   utcString: string,
   format: string = DARE_TIME_FORMAT
 ) {
-  return dayjs.utc(utcString).format(format)
+  return dayjs.utc(utcString).utcOffset(8).format(format)
 }

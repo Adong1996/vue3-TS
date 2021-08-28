@@ -16,10 +16,6 @@ export const routes: RouteRecordRaw[] = [
     component: () => import('@/views/Main/Main.vue')
     // children: []  -> 根据menuList动态决定
   },
-  {
-    path: '/test',
-    component: () => import('@/test.vue')
-  },
   // not find page
   {
     path: '/:pathMatch(.*)*',

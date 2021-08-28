@@ -1,6 +1,7 @@
 import { IFrom } from '@/base-ui/ToFrom/index'
 
 export const searchFromConfig: IFrom = {
+  title: '',
   labelWidth: '120px',
   itemLayout: {
     padding: '10px 40px'

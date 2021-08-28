@@ -135,10 +135,10 @@ const systemModule: Module<IStstemState, IRootState> = {
         }
       })
     },
-    editPageDataAction({ dispatch }, payload: any) {
+    async editPageDataAction({ dispatch }, payload: any) {
       const { pageName, editData, id } = payload
       const pageUrl = `/${pageName}/${id}`
-      editPageData(pageUrl, editData)
+      await editPageData(pageUrl, editData)
       // 重新请求最新的数据
       dispatch('getPageListAction', {
         pageName,

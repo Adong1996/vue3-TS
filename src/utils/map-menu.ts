@@ -74,4 +74,21 @@ export function mapMenusToPermissions(userMenus: any[]) {
   return permission
 }
 
+// 获取tree节点
+export function menuMapleafKeys(menuList: any[]) {
+  const leftkeys: number[] = []
+
+  const _recurseGetLeaf = (menuList: any[]) => {
+    for (const menu of menuList) {
+      if (menu.children) {
+        _recurseGetLeaf(menu.children)
+      } else {
+        leftkeys.push(menu.id)
+      }
+    }
+  }
+  _recurseGetLeaf(menuList)
+  return leftkeys
+}
+
 export { firstMenu }

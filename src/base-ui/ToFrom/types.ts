@@ -13,6 +13,7 @@ export interface IFromItem {
 }
 
 export interface IFrom {
+  title: string
   fromItems: IFromItem[]
   labelWidth?: string
   colLayout?: any

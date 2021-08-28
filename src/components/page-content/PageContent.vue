@@ -142,7 +142,7 @@ export default defineComponent({
 
     // 增删改查
     const handleDeleteClick = (item: any) => {
-      store.dispatch('system/getPageListAction', {
+      store.dispatch('system/deletePageDataAction', {
         pageName: props.pageName,
         id: item.id
       })

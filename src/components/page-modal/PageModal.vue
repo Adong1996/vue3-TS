@@ -1,13 +1,14 @@
 <template>
   <div class="PageModal">
     <el-dialog
-      title="新建用户"
+      :title="`新建${modalConfig.title}`"
       v-model="dialogVisible"
       width="35%"
       center
       destroy-on-close
     >
       <ToFrom v-bind="modalConfig" v-model="formData"></ToFrom>
+      <slot></slot>
       <template #footer>
         <span class="dialog-footer">
           <el-button>取消</el-button>
@@ -37,6 +38,10 @@ export default defineComponent({
     defaultInfo: {
       type: Object,
       default: () => ({})
+    },
+    otherInfo: {
+      type: Object,
+      defalit: () => ({})
     }
   },
   setup(props) {
@@ -59,13 +64,14 @@ export default defineComponent({
         // 编辑
         store.dispatch('system/editPageDataAction', {
           pageName: props.pageName,
-          id: props.defaultInfo.id
+          id: props.defaultInfo.id,
+          editData: { ...formData.value, ...props.otherInfo }
         })
       } else {
         // 添加
         store.dispatch('system/createPageDataAction', {
           pageName: props.pageName,
-          editData: { ...formData.value }
+          newData: { ...formData.value, ...props.otherInfo }
         })
       }
     }

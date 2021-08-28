@@ -12,6 +12,7 @@ export function getPageListData(url: string, queryInfo: any) {
 }
 
 export function deletePageDataById(url: string) {
+  console.log('deletePageDataById')
   return backRequest.delete<IDataType>({
     url: url,
     headers: {

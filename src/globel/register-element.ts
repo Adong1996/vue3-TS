@@ -34,7 +34,12 @@ import {
   ElTableColumn,
   ElPagination,
   ElImage,
-  ElDialog
+  ElDialog,
+  ElDropdown,
+  ElAvatar,
+  ElDropdownMenu,
+  ElDropdownItem,
+  ElTree
 } from 'element-plus'
 
 const components = [
@@ -69,7 +74,12 @@ const components = [
   ElTableColumn,
   ElPagination,
   ElImage,
-  ElDialog
+  ElDialog,
+  ElDropdown,
+  ElAvatar,
+  ElDropdownMenu,
+  ElDropdownItem,
+  ElTree
 ]
 
 export default function (app: App) {

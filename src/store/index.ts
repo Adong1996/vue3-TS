@@ -11,7 +11,8 @@ export const store = createStore<IRootState>({
   state() {
     return {
       entireDepartment: [],
-      entireRole: []
+      entireRole: [],
+      entirMenu: []
     }
   },
   getters: {},
@@ -21,11 +22,14 @@ export const store = createStore<IRootState>({
     },
     changeEntireRole(state, list) {
       state.entireRole = list
+    },
+    changeEntireMenu(state, list) {
+      state.entirMenu = list
     }
   },
   actions: {
     async getInitialDataAction({ commit }) {
-      // 请求部门角色的数据
+      // 请求全部的部门角色的数据
       const departmentResult = await getPageListData('/department/list', {
         offset: 0,
         size: 1000
@@ -37,9 +41,12 @@ export const store = createStore<IRootState>({
       })
       const { list: roleList } = roleResult.data
 
-      // 保存部门角色的数据
+      const menuResult = await getPageListData('menu/list', {})
+      const { list: menuList } = menuResult.data
+      // 保存全部的部门角色的数据
       commit('changeEntireDepartment', departmentList)
       commit('changeEntireRole', roleList)
+      commit('changeEntireMenu', menuList)
     }
   },
   modules: {
@@ -50,7 +57,6 @@ export const store = createStore<IRootState>({
 // 页面刷新本地获取数据保存 store
 export function setupStore() {
   store.dispatch('login/localLoginInfo')
-  store.dispatch('getInitialDataAction')
 }
 //typescript 二次封装 store 具有类型检测
 export function useStore(): Store<IStoreType> {

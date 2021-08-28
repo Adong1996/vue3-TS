@@ -1,6 +1,7 @@
 import { IFrom } from '@/base-ui/ToFrom/index'
 
 export const modalConfig: IFrom = {
+  title: '用户',
   fromItems: [
     {
       field: 'name',

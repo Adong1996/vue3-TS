@@ -63,7 +63,7 @@ export default defineComponent({
       }
     }
 
-    // 动态添加部分角色列表
+    // 动态添加部用户列表
     const store = useStore()
     const modalConfigRef = computed(() => {
       const departmentItem = modalConfig.fromItems.find(

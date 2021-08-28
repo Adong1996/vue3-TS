@@ -55,12 +55,15 @@ const loginModule: Module<ILoginState, IRootState> = {
   },
   getters: {},
   actions: {
-    async loginGo({ commit }, palody: IAccount) {
+    async loginGo({ commit, dispatch }, palody: IAccount) {
       // 登录请求
       const resLogin = await reqLogin(palody)
       const { id, token } = resLogin.data
       commit('saveToken', token)
       localStorageSet('key_token', token)
+
+      // 初始化数据请求
+      dispatch('getInitialDataAction', null, { root: true })
 
       //请求用户信息
       const resInfo = await reqUserInfo(id)
@@ -76,10 +79,13 @@ const loginModule: Module<ILoginState, IRootState> = {
       // 登录后跳转
       router.push('/main')
     },
-    localLoginInfo({ commit }) {
+    // 本地加载数据
+    localLoginInfo({ commit, dispatch }) {
       const token = localStorageGet('key_token')
       if (token) {
         commit('saveToken', token)
+        // 初始化数据请求
+        dispatch('getInitialDataAction', null, { root: true })
       }
       const saveInfo = localStorageGet('usersInfo')
       if (saveInfo) {
