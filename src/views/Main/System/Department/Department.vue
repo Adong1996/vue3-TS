@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-
+import * as echarts from 'echarts'
 export default defineComponent({
   setup() {
     return {}

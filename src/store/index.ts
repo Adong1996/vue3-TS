@@ -6,6 +6,7 @@ import { getPageListData } from '@/service/main/system/system'
 
 import login from './login/login'
 import system from './main/system/system'
+import dashboard from './main/analysis//dashboard'
 //创建 store 实例泛型 state 的类型
 export const store = createStore<IRootState>({
   state() {
@@ -51,7 +52,8 @@ export const store = createStore<IRootState>({
   },
   modules: {
     login,
-    system
+    system,
+    dashboard
   }
 })
 // 页面刷新本地获取数据保存 store

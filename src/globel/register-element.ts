@@ -39,7 +39,8 @@ import {
   ElAvatar,
   ElDropdownMenu,
   ElDropdownItem,
-  ElTree
+  ElTree,
+  ElCard
 } from 'element-plus'
 
 const components = [
@@ -79,7 +80,8 @@ const components = [
   ElAvatar,
   ElDropdownMenu,
   ElDropdownItem,
-  ElTree
+  ElTree,
+  ElCard
 ]
 
 export default function (app: App) {
