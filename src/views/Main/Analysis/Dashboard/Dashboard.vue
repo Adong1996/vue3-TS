@@ -1,5 +1,14 @@
 <template>
   <div class="dashboard">
+    <!-- 数据统计 -->
+    <el-row :gutter="10">
+      <template v-for="item in topPanelData" :key="item.title">
+        <el-col :md="12" :lg="6" :xl="6">
+          <StatisticalPanel :panelData="item" />
+        </el-col>
+      </template>
+    </el-row>
+    <!-- 中间图表 -->
     <el-row :gutter="10">
       <el-col :span="7">
         <ToCar title="分类商品数量(饼图)">
@@ -35,7 +44,7 @@
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
 import { useStore } from '@/store/index'
-
+import StatisticalPanel from '@/components/statistical-panel/StatisticalPanel'
 import ToCar from '@/base-ui/Toacar/index'
 import {
   PieEchart,
@@ -51,13 +60,15 @@ export default defineComponent({
     LineEchart,
     BarEchart,
     MapEchart,
-    ToCar
+    ToCar,
+    StatisticalPanel
   },
   setup() {
     const store = useStore()
     // 请求数据
     store.dispatch('dashboard/getDashboardAction')
     // 获取数据
+    const topPanelData = computed(() => store.state.dashboard.amountList)
     const categoryGoodsCount = computed(() => {
       return store.state.dashboard.categoryGoodsCount.map((item: any) => {
         return { name: item.name, value: item.goodsCount }
@@ -92,7 +103,8 @@ export default defineComponent({
       categoryGoodsCount,
       categoryGoodsSale,
       categoryGoodsFavor,
-      addressGoodsSale
+      addressGoodsSale,
+      topPanelData
     }
   }
 })

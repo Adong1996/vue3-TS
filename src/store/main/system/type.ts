@@ -11,4 +11,10 @@ export interface IStstemState {
   // 菜单
   menuList: any[]
   menuCount: number
+  // 部门
+  departmentList: any[]
+  departmentCount: number
+  // 商品分类
+  categoryList: any[]
+  categoryCount: number
 }

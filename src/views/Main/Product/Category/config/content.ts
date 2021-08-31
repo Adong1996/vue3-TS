@@ -1,8 +1,7 @@
 export const contentFromConfig = {
-  title: '角色',
+  title: '类名',
   propList: [
-    { prop: 'name', label: '角色名称', minWidth: '100' },
-    { prop: 'intro', label: '角色权限', minWidth: '100' },
+    { prop: 'name', label: '商品类名', minWidth: '100' },
     {
       prop: 'createAt',
       label: '创建时间',

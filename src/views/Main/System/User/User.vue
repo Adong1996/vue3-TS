@@ -43,7 +43,7 @@ export default defineComponent({
   },
   name: 'user',
   setup() {
-    const [handleResetClick, handleQueryClick, PageContentRef] = usePageSearch()
+    const [PageContentRef, handleResetClick, handleQueryClick] = usePageSearch()
 
     // pageModal hook 逻辑
     const newCallback = () => {
@@ -63,7 +63,7 @@ export default defineComponent({
       }
     }
 
-    // 动态添加部用户列表
+    // 动态添加用户列表
     const store = useStore()
     const modalConfigRef = computed(() => {
       const departmentItem = modalConfig.fromItems.find(

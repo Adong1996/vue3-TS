@@ -7,4 +7,8 @@ export interface IDashboardState {
   categoryGoodsFavor: any[]
   // 不同城市的销量
   addressGoodsSale: any[]
+  // 商品数据统计的数量
+  amountList: any[]
+  // 销量前10的商品数量
+  goodsSaleTop10: any[]
 }

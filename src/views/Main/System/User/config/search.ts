@@ -11,12 +11,6 @@ export const searchFromConfig: IFrom = {
   // },
   fromItems: [
     {
-      field: 'id',
-      type: 'input',
-      label: 'id',
-      placeholder: '请输入用id'
-    },
-    {
       field: 'name',
       type: 'input',
       label: '用户名',

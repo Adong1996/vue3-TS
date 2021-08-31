@@ -1,7 +1,7 @@
 <template>
   <div class="PageModal">
     <el-dialog
-      :title="`新建${modalConfig.title}`"
+      :title="`新建${modalConfig?.title}`"
       v-model="dialogVisible"
       width="35%"
       center

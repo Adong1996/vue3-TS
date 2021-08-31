@@ -16,7 +16,7 @@
           v-if="isCreate"
           @click="handleNewClick"
         >
-          {{ '新建' + contentFromConfig.title }}
+          {{ '新建' + contentFromConfig?.title }}
         </el-button>
       </template>
       <!-- 列中的插槽 -->

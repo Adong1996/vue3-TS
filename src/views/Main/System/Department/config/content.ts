@@ -1,8 +1,14 @@
 export const contentFromConfig = {
-  title: '角色',
+  title: '部门',
   propList: [
-    { prop: 'name', label: '角色名称', minWidth: '100' },
-    { prop: 'intro', label: '角色权限', minWidth: '100' },
+    { prop: 'name', label: '部门名称', minWidth: '100' },
+    { prop: 'leader', label: '部门领导', minWidth: '100' },
+    {
+      prop: 'parentId',
+      label: '上级部门',
+      minWidth: '120',
+      slotName: 'parentId'
+    },
     {
       prop: 'createAt',
       label: '创建时间',

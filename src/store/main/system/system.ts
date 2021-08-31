@@ -22,7 +22,13 @@ const systemModule: Module<IStstemState, IRootState> = {
       goodsCount: 0,
       // 菜单
       menuList: [],
-      menuCount: 0
+      menuCount: 0,
+      // 部门
+      departmentList: [],
+      departmentCount: 0,
+      // 商品分类
+      categoryList: [],
+      categoryCount: 0
     }
   },
   mutations: {
@@ -49,6 +55,18 @@ const systemModule: Module<IStstemState, IRootState> = {
     },
     changeMenuCount(state, count: number) {
       state.menuCount = count
+    },
+    changeDepartmentList(state, list: any[]) {
+      state.departmentList = list
+    },
+    changeDepartmentCount(state, count: number) {
+      state.departmentCount = count
+    },
+    changeCategoryList(state, list: any[]) {
+      state.categoryList = list
+    },
+    changeCategoryCount(state, count: number) {
+      state.categoryCount = count
     }
   },
   getters: {

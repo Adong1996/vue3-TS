@@ -40,7 +40,10 @@ import {
   ElDropdownMenu,
   ElDropdownItem,
   ElTree,
-  ElCard
+  ElCard,
+  ElTooltip,
+  ElDescriptions,
+  ElDescriptionsItem
 } from 'element-plus'
 
 const components = [
@@ -81,7 +84,10 @@ const components = [
   ElDropdownMenu,
   ElDropdownItem,
   ElTree,
-  ElCard
+  ElCard,
+  ElTooltip,
+  ElDescriptions,
+  ElDescriptionsItem
 ]
 
 export default function (app: App) {

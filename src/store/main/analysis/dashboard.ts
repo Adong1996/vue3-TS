@@ -7,7 +7,9 @@ import {
   getAddressGoodsSale,
   getCategoryGoodsCount,
   getCategoryGoodsFavor,
-  getCategoryGoodsSale
+  getCategoryGoodsSale,
+  getAmountList,
+  getGoodsSaleTop10
 } from '@/service/main/analysis/dashboard'
 const dashboardModule: Module<IDashboardState, IRootState> = {
   namespaced: true,
@@ -16,7 +18,9 @@ const dashboardModule: Module<IDashboardState, IRootState> = {
       categoryGoodsCount: [],
       categoryGoodsSale: [],
       categoryGoodsFavor: [],
-      addressGoodsSale: []
+      addressGoodsSale: [],
+      amountList: [],
+      goodsSaleTop10: []
     }
   },
   mutations: {
@@ -31,6 +35,12 @@ const dashboardModule: Module<IDashboardState, IRootState> = {
     },
     changeAddressGoodsSale(state, list) {
       state.addressGoodsSale = list
+    },
+    changeAmountList(state, list) {
+      state.amountList = list
+    },
+    changeGoodsSaleTop10(state, list) {
+      state.goodsSaleTop10 = list
     }
   },
   actions: {
@@ -43,6 +53,10 @@ const dashboardModule: Module<IDashboardState, IRootState> = {
       commit('changeCategoryGoodsFavor', categoryGoodsFavorReslut.data)
       const categoryGoodsSaleReslut = await getCategoryGoodsSale()
       commit('changeCategoryGoodsSale', categoryGoodsSaleReslut.data)
+      const changeAmountListReslut = await getAmountList()
+      commit('changeAmountList', changeAmountListReslut.data)
+      const changeGoodsSaleTop10Reslut = await getGoodsSaleTop10()
+      commit('changeGoodsSaleTop10', changeGoodsSaleTop10Reslut.data)
     }
   }
 }
