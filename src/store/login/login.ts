@@ -58,6 +58,7 @@ const loginModule: Module<ILoginState, IRootState> = {
     async loginGo({ commit, dispatch }, palody: IAccount) {
       // 登录请求
       const resLogin = await reqLogin(palody)
+      console.log(resLogin)
       const { id, token } = resLogin.data
       commit('saveToken', token)
       localStorageSet('key_token', token)

@@ -11,6 +11,7 @@ const backRequest = new AllRequest({
   timeout: TIME_OUT,
   interceptors: {
     reqInterceptors: (config) => {
+      console.log('palody')
       const data = config.data
       // axios默认请求体格式是json对象 --> url-encodie
       if (data instanceof Object) {
@@ -27,8 +28,6 @@ const backRequest = new AllRequest({
       // }
       if (token) {
         config.headers.Authorization = `Bearer ${token}`
-      } else {
-        throw Error('请先登录')
       }
       return config
     },
