@@ -13,49 +13,49 @@ enum DashboardAPI {
 
 export function getAmountList() {
   return backRequest.get({
-    url: DashboardAPI.amountList,
-    headers: {
-      needToken: true
-    }
+    url: DashboardAPI.amountList
+    // headers: {
+    //   needToken: true
+    // }
   })
 }
 export function getGoodsSaleTop10() {
   return backRequest.get({
-    url: DashboardAPI.goodsSaleTop10,
-    headers: {
-      needToken: true
-    }
+    url: DashboardAPI.goodsSaleTop10
+    // headers: {
+    //   needToken: true
+    // }
   })
 }
 export function getCategoryGoodsCount() {
   return backRequest.get<IDataType>({
-    url: DashboardAPI.categoryGoodsCount,
-    headers: {
-      needToken: true
-    }
+    url: DashboardAPI.categoryGoodsCount
+    // headers: {
+    //   needToken: true
+    // }
   })
 }
 export function getCategoryGoodsSale() {
   return backRequest.get<IDataType>({
-    url: DashboardAPI.categoryGoodsSale,
-    headers: {
-      needToken: true
-    }
+    url: DashboardAPI.categoryGoodsSale
+    // headers: {
+    //   needToken: true
+    // }
   })
 }
 export function getCategoryGoodsFavor() {
   return backRequest.get<IDataType>({
-    url: DashboardAPI.categoryGoodsFavor,
-    headers: {
-      needToken: true
-    }
+    url: DashboardAPI.categoryGoodsFavor
+    // headers: {
+    //   needToken: true
+    // }
   })
 }
 export function getAddressGoodsSale() {
   return backRequest.get<IDataType>({
-    url: DashboardAPI.addressGoodsSale,
-    headers: {
-      needToken: true
-    }
+    url: DashboardAPI.addressGoodsSale
+    // headers: {
+    //   needToken: true
+    // }
   })
 }

@@ -18,12 +18,17 @@ const backRequest = new AllRequest({
       }
       // 携带token的方式：1.cookie 2. 请求参数 3.请求头[authorization]
       const token = localStorageGet('key_token')
-      if (config.headers.needToken) {
-        if (token) {
-          config.headers.Authorization = `Bearer ${token}`
-        } else {
-          throw Error('请先登录')
-        }
+      // if (config.headers.needToken) {
+      //   if (token) {
+      //     config.headers.Authorization = `Bearer ${token}`
+      //   } else {
+      //     throw Error('请先登录')
+      //   }
+      // }
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`
+      } else {
+        throw Error('请先登录')
       }
       return config
     },

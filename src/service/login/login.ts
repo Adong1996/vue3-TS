@@ -18,17 +18,17 @@ export function reqLogin(account: IAccount) {
 }
 export function reqUserInfo(id: number) {
   return backRequest.get<IDataType>({
-    url: LoginApi.usersInfo + id,
-    headers: {
-      needToken: true
-    }
+    url: LoginApi.usersInfo + id
+    // headers: {
+    //   needToken: true
+    // }
   })
 }
 export function reqUseMenuIds(id: number) {
   return backRequest.get<IDataType>({
-    url: LoginApi.usersMenuIds + id + '/menu',
-    headers: {
-      needToken: true
-    }
+    url: LoginApi.usersMenuIds + id + '/menu'
+    // headers: {
+    //   needToken: true
+    // }
   })
 }
