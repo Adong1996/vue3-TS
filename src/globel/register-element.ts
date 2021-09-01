@@ -43,7 +43,8 @@ import {
   ElCard,
   ElTooltip,
   ElDescriptions,
-  ElDescriptionsItem
+  ElDescriptionsItem,
+  ElTag
 } from 'element-plus'
 
 const components = [
@@ -87,7 +88,8 @@ const components = [
   ElCard,
   ElTooltip,
   ElDescriptions,
-  ElDescriptionsItem
+  ElDescriptionsItem,
+  ElTag
 ]
 
 export default function (app: App) {

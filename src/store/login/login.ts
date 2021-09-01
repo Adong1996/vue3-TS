@@ -59,6 +59,7 @@ const loginModule: Module<ILoginState, IRootState> = {
       // 登录请求
       const resLogin = await reqLogin(palody)
       const { id, token } = resLogin.data
+      console.log(resLogin.data)
       commit('saveToken', token)
       localStorageSet('key_token', token)
 
@@ -68,11 +69,13 @@ const loginModule: Module<ILoginState, IRootState> = {
       //请求用户信息
       const resInfo = await reqUserInfo(id)
       const info = resInfo.data
+      // 获取角色菜单id
+      const { role } = info
       commit('saveInfo', info)
       localStorageSet('usersInfo', info)
 
       //获取角色菜单信息
-      const resMenuIds = await reqUseMenuIds(id)
+      const resMenuIds = await reqUseMenuIds(role.id)
       const menuIds = resMenuIds.data
       commit('saveMenuIds', menuIds)
       localStorageSet('menuIds', menuIds)
