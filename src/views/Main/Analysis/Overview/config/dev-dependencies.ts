@@ -1,4 +1,4 @@
-import type { DescriptionProp } from '@/base-ui/descriptions'
+import type { DescriptionProp } from '@/base-ui/Descriptions/index'
 export const devDependencies: DescriptionProp[] = [
   {
     name: 'typescript',
