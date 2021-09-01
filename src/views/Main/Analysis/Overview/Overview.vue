@@ -94,9 +94,9 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 
-import Descriptions from '@/base-ui/Descriptions'
-import TextLink from '@/base-ui/TextLink'
-import Code from '@/base-ui/Code'
+import Descriptions from '@/base-ui/Descriptions/index'
+import TextLink from '@/base-ui/TextLink/index'
+import Code from '@/base-ui/Code/index'
 import Toacar from '@/base-ui/Toacar/index'
 
 import {

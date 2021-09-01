@@ -1,6 +1,5 @@
 import { backRequest } from '@/service/index'
 import { IDataType } from '@/service/type'
-
 export function getPageListData(url: string, queryInfo: any) {
   return backRequest.post<IDataType>({
     url: url,
@@ -10,7 +9,6 @@ export function getPageListData(url: string, queryInfo: any) {
     }
   })
 }
-
 export function deletePageDataById(url: string) {
   console.log('deletePageDataById')
   return backRequest.delete<IDataType>({

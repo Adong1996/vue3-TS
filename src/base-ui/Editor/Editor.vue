@@ -112,7 +112,6 @@ export default defineComponent({
         content.text = editor.txt.text()
         if (!isInitContent.value) {
           emit('update:value', content.html)
-          console.log('xx')
         }
         // 最后标记为 false
         isInitContent.value = false
