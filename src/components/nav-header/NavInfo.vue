@@ -6,7 +6,7 @@
           <el-avatar
             size="medium"
             class="avatar"
-            src="https://upload.jianshu.io/users/upload_avatars/1102036/c3628b478f06.jpeg"
+            src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
           ></el-avatar>
           <span class="name">{{ name }}</span>
         </span>
