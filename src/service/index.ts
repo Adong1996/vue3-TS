@@ -39,6 +39,7 @@ const backRequest = new AllRequest({
       return data
     },
     resInterceptorsCatch: () => {
+      alert('输入不对，请联系管理员')
       return new Promise<void>(() => ({}))
     }
   }

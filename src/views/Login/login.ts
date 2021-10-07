@@ -12,7 +12,6 @@ export const loginAll = function (
     userFrom.validate((valid: boolean) => {
       if (valid) {
         // 账号登录请求
-        console.log('登录验证成功')
         if (isCheck) {
           localStorageSet(type, info)
           return
